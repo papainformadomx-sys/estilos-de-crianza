@@ -807,11 +807,14 @@ function calcResults() {
     `;
   } else if (mainStyle !== 'D') {
     const dPct = pcts['D'];
+    const allSecondary = Object.entries(pcts)
+      .filter(([key]) => key !== mainStyle)
+      .sort((a, b) => b[1] - a[1]);
     warningHtml = `
       <div class="result-card" style="border-color: #3A7D52; background: #F0FAF4;">
         <h3 style="color:#3A7D52;">🌱 Un punto de partida</h3>
         <p style="color:#2A5A3A;">
-          Tus resultados muestran: ${secondaryStyles.concat([['D', dPct]]).sort((a,b) => b[1]-a[1]).map(([key, pct]) => `<strong>${styleNames[key]} (${pct}%)</strong>`).join(', ')}.
+          Tus resultados muestran: ${allSecondary.map(([key, pct]) => `<strong>${styleNames[key]} (${pct}%)</strong>`).join(', ')}.
           Ese <strong>Democrático (${dPct}%)</strong> ya está ahí — y eso es un buen inicio para seguir creciendo.
         </p>
       </div>
