@@ -425,7 +425,7 @@
 
 <div class="header">
   <div class="header-label">Taller de Papá Informado</div>
-  <h1>¿Cómo guias<br>a tus hijos?</h1>
+  <h1>¿Cómo guías<br>a tus hijos?</h1>
   <p>Un test para conocer tu estilo de crianza y cómo mejorar tu relación con tus hijos</p>
 </div>
 
@@ -476,138 +476,138 @@
 // =====================
 const questions = [
   {
-    text: "Tu hijo(a) llega llorando porque se peleó con su amigo. ¿Qué haces?",
+    text: "Tu hijo/a de prepa llega a casa de mal humor y se encierra en su cuarto sin decir nada. ¿Qué haces?",
     options: [
-      { text: "Le digo que deje de llorar, eso no es para tanto", style: "A" },
-      { text: "Lo escucho, le pregunto qué pasó y lo ayudo a pensar cómo resolver", style: "D" },
-      { text: "Lo abrazo y le digo que haga lo que él/ella quiera", style: "P" },
-      { text: "Estoy ocupado/a, le digo que ya se le pasará", style: "N" }
+      { text: "Le digo que ese comportamiento no se vale y que tiene que hablar con respeto", style: "A" },
+      { text: "Le doy un momento y luego toco su puerta para preguntarle si está bien", style: "D" },
+      { text: "Me preocupo mucho y lo/la sigo hasta que me cuente qué pasó", style: "P" },
+      { text: "Lo dejo, seguro ya se le pasará solo", style: "N" }
     ]
   },
   {
-    text: "Son las 10 de la noche y tu hijo no quiere irse a dormir. ¿Cómo reaccionas?",
+    text: "Tu hijo/a quiere tener el celular sin límite de horario, incluso de noche. ¿Cómo lo manejas?",
     options: [
-      { text: "Le digo que no hay discusión: a la cama ya", style: "A" },
-      { text: "Le explico por qué es importante dormir y acordamos un horario juntos", style: "D" },
-      { text: "Le dejo quedarse despierto si quiere, total ya dormirá cuando tenga sueño", style: "P" },
-      { text: "Ni me fijo mucho, que haga lo que quiera", style: "N" }
+      { text: "Le quito el celular si no cumple mis reglas, sin negociar", style: "A" },
+      { text: "Hablamos sobre por qué el descanso importa y acordamos un horario juntos", style: "D" },
+      { text: "Le dejo el celular, no quiero que se enoje o se sienta controlado/a", style: "P" },
+      { text: "No tengo reglas claras sobre eso en casa", style: "N" }
     ]
   },
   {
-    text: "Tu hijo saca malas calificaciones. ¿Qué haces primero?",
+    text: "Tu hijo/a saca malas calificaciones este semestre. ¿Qué haces primero?",
     options: [
-      { text: "Lo regaño o castigo para que entienda que eso no está bien", style: "A" },
-      { text: "Le pregunto cómo se siente y qué cree que pasó, luego buscamos soluciones", style: "D" },
-      { text: "Le digo que no se preocupe, que las calificaciones no lo son todo", style: "P" },
-      { text: "No me entero hasta que ya pasó mucho tiempo", style: "N" }
+      { text: "Lo/la castigo: sin salidas, sin celular hasta que mejore", style: "A" },
+      { text: "Platico con él/ella para entender qué está pasando y buscar soluciones juntos", style: "D" },
+      { text: "Le digo que no se estrese, que lo importante es que esté bien", style: "P" },
+      { text: "Me entero cuando ya es tarde o no hago mucho al respecto", style: "N" }
     ]
   },
   {
-    text: "¿Con qué frase te identificas más cuando pones reglas en casa?",
+    text: "Tu hijo/a de prepa quiere salir un sábado por la noche con amigos que no conoces. ¿Qué haces?",
     options: [
-      { text: "\"Porque yo lo digo, y punto\"", style: "A" },
-      { text: "\"Vamos a acordar reglas que sean justas para todos\"", style: "D" },
-      { text: "\"No me gusta pelearme con ellos, así que tampoco impongo tanto\"", style: "P" },
-      { text: "\"Casi no hay reglas establecidas en mi casa\"", style: "N" }
+      { text: "Le digo que no hasta que conozca a sus amigos y sepa exactamente a dónde va", style: "A" },
+      { text: "Le pido que me cuente quiénes son, a dónde van y acordamos una hora de regreso", style: "D" },
+      { text: "Le digo que sí, ya tiene edad para tomar sus decisiones", style: "P" },
+      { text: "Casi no me entero de sus planes o no pregunto mucho", style: "N" }
     ]
   },
   {
-    text: "Tu hijo quiere hacer algo que no te parece buena idea. ¿Qué haces?",
+    text: "Tu hijo/a te dice que está saliendo con alguien. ¿Cómo reaccionas?",
     options: [
-      { text: "Le digo que no y no hay más que hablar", style: "A" },
-      { text: "Hablo con él/ella, le explico mis preocupaciones y escucho su punto de vista", style: "D" },
-      { text: "Al final termino dejándolo hacer lo que quiere para no discutir", style: "P" },
-      { text: "Normalmente no me entero de lo que quiere hacer", style: "N" }
+      { text: "Le digo que a su edad no es momento para novios/as, que se enfoque en la escuela", style: "A" },
+      { text: "Le pregunto con curiosidad, escucho y aprovecho para platicar de relaciones sanas", style: "D" },
+      { text: "Me emociono mucho y quiero saber todos los detalles para ser su confidente", style: "P" },
+      { text: "No digo mucho, eso es cosa de ellos", style: "N" }
     ]
   },
   {
-    text: "¿Cuánto tiempo al día convives de verdad con tus hijos (platicar, jugar, ayudar con tareas)?",
+    text: "Hay una pelea fuerte en casa porque tu hijo/a no quiso hacer algo que le pediste. ¿Cómo termina?",
     options: [
-      { text: "Poco, pero cuando estamos juntos yo marco las reglas", style: "A" },
-      { text: "Intento que sea tiempo de calidad, conectar con ellos", style: "D" },
-      { text: "Bastante, no me separo de ellos y hago lo que me piden", style: "P" },
-      { text: "Muy poco, casi no coincidimos o estoy muy ocupado/a", style: "N" }
+      { text: "Yo tengo la última palabra, acaba haciendo lo que dije aunque haya pleito", style: "A" },
+      { text: "Cuando los ánimos se calman, hablamos y buscamos un punto medio", style: "D" },
+      { text: "Cedo para que no haya más conflicto, no me gusta pelearme con él/ella", style: "P" },
+      { text: "El pleito se queda sin resolver, cada quien se va por su lado", style: "N" }
     ]
   },
   {
-    text: "Tu hijo comete un error o hace algo malo. ¿Cómo lo corriges?",
+    text: "Tu hijo/a te dice que se siente solo/a, triste o sin ganas de nada desde hace semanas. ¿Qué haces?",
     options: [
-      { text: "Con un castigo inmediato para que aprenda", style: "A" },
-      { text: "Hablo con él/ella, le explico qué estuvo mal y qué consecuencias tiene", style: "D" },
-      { text: "Le llamo la atención pero al rato ya se me pasó y no hay consecuencias", style: "P" },
-      { text: "Muchas veces ni me entero o no hago nada al respecto", style: "N" }
+      { text: "Le digo que se ponga las pilas, que la vida es así y hay que seguir", style: "A" },
+      { text: "Lo/la escucho con atención y si es necesario busco apoyo profesional", style: "D" },
+      { text: "Me preocupo tanto que empiezo a hacer todo por él/ella para que no sufra", style: "P" },
+      { text: "No lo veo tan grave, creo que es cosa de la edad", style: "N" }
     ]
   },
   {
-    text: "¿Cómo manejas las emociones de tus hijos (tristeza, enojo, miedo)?",
+    text: "¿Sabes quiénes son los amigos de tu hijo/a y cómo se llaman?",
     options: [
-      { text: "Les digo que controlen sus emociones, que no sean exagerados", style: "A" },
-      { text: "Les enseño a nombrar cómo se sienten y los acompaño en eso", style: "D" },
-      { text: "Trato de que estén siempre felices y evito que se frustren", style: "P" },
-      { text: "No suelo hablar mucho de eso en casa", style: "N" }
+      { text: "Sé quiénes son y tengo reglas claras sobre con quién puede juntarse", style: "A" },
+      { text: "Sí los conozco, me interesa saber con quién convive sin controlarlo/a", style: "D" },
+      { text: "Los conozco a todos, mi hijo/a me cuenta todo y somos muy cercanos", style: "P" },
+      { text: "Poco, no tengo mucho seguimiento de su vida social", style: "N" }
     ]
   },
   {
-    text: "Cuando tu hijo logra algo (un gol, buenas notas, aprender algo nuevo), ¿cómo reaccionas?",
+    text: "Tu hijo/a te pide que lo/la dejes tomar una decisión importante sobre su futuro (carrera, trabajo, actividad). ¿Cómo respondes?",
     options: [
-      { text: "Lo reconozco brevemente pero no exagero", style: "A" },
-      { text: "Lo celebro con él/ella y le digo que estoy orgulloso/a", style: "D" },
-      { text: "Lo celebro muchísimo, casi siempre exagero para que se sienta bien", style: "P" },
-      { text: "Generalmente no me entero o no digo nada al respecto", style: "N" }
+      { text: "Le digo lo que debe hacer, tengo más experiencia y sé lo que le conviene", style: "A" },
+      { text: "Escucho su idea, comparto mi opinión y respeto su decisión final", style: "D" },
+      { text: "Le digo que haga lo que quiera, no quiero presionarlo/a", style: "P" },
+      { text: "No me involucro mucho en esas decisiones", style: "N" }
     ]
   },
   {
-    text: "¿Cómo toman decisiones en tu casa? (vacaciones, reglas, actividades)",
+    text: "Tu hijo/a llega más tarde de lo acordado sin avisar. ¿Cómo reaccionas?",
     options: [
-      { text: "Yo decido, así es más sencillo y no hay desorden", style: "A" },
-      { text: "Tomo en cuenta la opinión de los niños según su edad", style: "D" },
-      { text: "Los niños casi siempre deciden, quiero que se sientan libres", style: "P" },
-      { text: "No hay mucha organización, cada quien hace lo suyo", style: "N" }
+      { text: "Lo/la regaño fuerte y le pongo un castigo ejemplar", style: "A" },
+      { text: "Hablo con él/ella, le explico por qué me preocupé y reforzamos el acuerdo", style: "D" },
+      { text: "Me enojo un momento pero al rato ya lo perdoné sin consecuencias", style: "P" },
+      { text: "Casi no me di cuenta o no hice nada al respecto", style: "N" }
     ]
   },
   {
-    text: "Tu hijo te dice que no quiere ir a la escuela porque se siente mal emocionalmente. ¿Qué haces?",
+    text: "¿Con qué frecuencia tienes conversaciones reales con tu hijo/a — no sobre tareas o permisos, sino sobre cómo se siente?",
     options: [
-      { text: "Le digo que tiene que ir de todas formas, que así es la vida", style: "A" },
-      { text: "Me siento con él/ella, escucho qué pasa y tomamos una decisión juntos", style: "D" },
-      { text: "Lo dejo quedarse en casa para que no sufra", style: "P" },
-      { text: "No pregunto mucho, si no quiere ir, ya verá", style: "N" }
+      { text: "Poco, no soy muy dado/a a esas conversaciones", style: "A" },
+      { text: "Seguido, intento abrir espacios para que me cuente cómo está", style: "D" },
+      { text: "Todo el tiempo, él/ella me cuenta todo y yo siempre estoy disponible", style: "P" },
+      { text: "Casi nunca, hay mucha distancia entre nosotros", style: "N" }
     ]
   },
   {
-    text: "¿Qué tan seguido le dices a tu hijo/a que lo/la quieres, lo/la abrazas o muestras afecto?",
+    text: "Tu hijo/a empieza a cambiar su forma de vestir, su música o sus ideas de manera muy diferente a lo que conocías. ¿Cómo lo vives?",
     options: [
-      { text: "Poco, no soy muy expresivo/a pero me preocupo por ellos", style: "A" },
-      { text: "Seguido, intento que sepan que los quiero y que estoy ahí", style: "D" },
-      { text: "Muchísimo, casi todo el tiempo les demuestro mi amor", style: "P" },
-      { text: "Rara vez, no es algo que haga con frecuencia", style: "N" }
+      { text: "Le digo que hay límites y que mientras viva en mi casa sigue mis reglas", style: "A" },
+      { text: "Me da curiosidad, le pregunto sobre esos cambios y respeto su proceso", style: "D" },
+      { text: "Lo apoyo en todo, quiero que se sienta libre de ser quien quiera", style: "P" },
+      { text: "No me involucro mucho, cada quien tiene su vida", style: "N" }
     ]
   },
   {
-    text: "Tu hijo adolescente quiere salir con amigos un viernes por la noche. ¿Qué haces?",
+    text: "Sospechas que tu hijo/a puede estar en contacto con alcohol, cigarro u otras sustancias. ¿Qué haces?",
     options: [
-      { text: "Le digo que no o le pongo condiciones muy estrictas", style: "A" },
-      { text: "Hablamos: le pregunto con quién va, a qué hora regresa y llegamos a un acuerdo", style: "D" },
-      { text: "Le digo que sí sin muchos límites, que disfrute su vida", style: "P" },
-      { text: "No me involucro mucho en sus planes", style: "N" }
+      { text: "Lo confronto directo y le dejo claro que eso tiene consecuencias graves", style: "A" },
+      { text: "Busco el momento para tener una conversación honesta, sin acusar, para entender qué pasa", style: "D" },
+      { text: "No quiero acusarlo/a sin estar seguro/a, prefiero no decir nada por ahora", style: "P" },
+      { text: "No tengo mucha información de lo que hace fuera de casa", style: "N" }
     ]
   },
   {
-    text: "¿Cómo describes tu relación con tus hijos en este momento?",
+    text: "¿Cómo describes la confianza que tiene tu hijo/a en ti para contarte sus problemas?",
     options: [
-      { text: "Me respetan pero a veces siento que me tienen miedo o distancia", style: "A" },
-      { text: "Hay confianza, me cuentan sus cosas y también me hacen caso", style: "D" },
-      { text: "Somos muy cercanos pero a veces no me hacen caso", style: "P" },
-      { text: "Hay distancia, no platicamos mucho o me siento desconectado/a", style: "N" }
+      { text: "Me respeta pero creo que no siempre me cuenta todo por miedo a mi reacción", style: "A" },
+      { text: "Hay confianza, sabe que puede hablar conmigo aunque no siempre esté de acuerdo", style: "D" },
+      { text: "Me cuenta absolutamente todo, somos más amigos que padre/madre e hijo/a", style: "P" },
+      { text: "Hay bastante distancia, casi no sé lo que le pasa", style: "N" }
     ]
   },
   {
-    text: "Cuando tu hijo te pide explicaciones de por qué tiene que hacer algo, ¿cómo respondes?",
+    text: "Cuando tu hijo/a te cuestiona una regla o decisión tuya, ¿cómo respondes?",
     options: [
-      { text: "\"Porque soy tu papá/mamá y lo digo yo\"", style: "A" },
-      { text: "Le explico la razón de manera que pueda entender", style: "D" },
-      { text: "Muchas veces termino cediendo si insiste bastante", style: "P" },
-      { text: "Generalmente no hay mucha comunicación al respecto", style: "N" }
+      { text: "\"En esta casa mando yo, y punto\"", style: "A" },
+      { text: "Escucho su argumento y si tiene razón, puedo cambiar de opinión", style: "D" },
+      { text: "Generalmente termino cediendo para no entrar en conflicto", style: "P" },
+      { text: "No hay muchas reglas que cuestionar, cada quien hace lo suyo", style: "N" }
     ]
   }
 ];
@@ -627,10 +627,10 @@ const styles = {
     description: "Tienes un estilo que combina dos cosas importantes: poner límites claros Y estar presente emocionalmente. Escuchas a tus hijos, les explicas las cosas, y aun así no pierdes tu rol como guía. Este es uno de los estilos más saludables para el desarrollo de los niños.",
     strength: "Tus hijos se sienten seguros y escuchados, y al mismo tiempo aprenden a respetar límites.",
     recos: [
-      "Sigue siendo constante con los acuerdos que hacen en familia — eso les da seguridad.",
-      "Recuerda que no tienes que ser perfecto/a. Lo que más vale es que estás intentando.",
-      "Cuando te equivoques, muéstrale a tus hijos cómo pedir disculpas — eso enseña más que cualquier regla.",
-      "Busca momentos de conexión sin agenda: jugar, reír, platicar sin prisa."
+      "Sigue siendo constante con los acuerdos que hacen en familia — a los adolescentes les da seguridad saber que hay un adulto confiable.",
+      "Cuando tu hijo/a te cuente algo difícil, escucha primero antes de dar consejos o corregir — eso mantiene la confianza abierta.",
+      "Cuando te equivoques, pide disculpas. Eso les enseña más que cualquier regla.",
+      "Busca momentos de conexión sin agenda: un trayecto en coche, una comida solos — los adolescentes se abren cuando no sienten que es 'la charla'."
     ]
   },
   A: {
@@ -644,10 +644,10 @@ const styles = {
     description: "Valoras el orden, la disciplina y que tus hijos te respeten. Eso tiene mucho valor. Sin embargo, a veces el control puede generar distancia o hacer que tus hijos no se sientan en confianza de contarte sus cosas. La buena noticia es que con pequeños ajustes puedes mantener tu autoridad Y ganar más conexión.",
     strength: "Tus hijos saben que hay reglas claras y que hay un adulto a cargo. Eso les da estructura.",
     recos: [
-      "Intenta explicar el 'por qué' de tus reglas — los niños obedecen mejor cuando entienden la razón.",
-      "Busca un momento al día para preguntar cómo se sintieron, sin corregir ni juzgar.",
-      "El afecto físico (abrazos, palmadas en la espalda) no te quita autoridad — te acerca a ellos.",
-      "Cuando castigues, asegúrate de que tu hijo entienda qué hizo mal, no solo que se sienta castigado."
+      "Con adolescentes, el 'porque yo lo digo' cierra puertas — intenta explicar el por qué, eso genera más respeto real.",
+      "Busca un momento a la semana para preguntar cómo está, sin corregir ni juzgar. Solo escuchar.",
+      "El afecto con los hijos grandes importa igual — un abrazo o un 'te quiero' no te quita autoridad, te acerca.",
+      "Si tu hijo/a no te cuenta las cosas, pregúntate si cuando lo hace la reacción tuya los hace querer volver a contarte."
     ]
   },
   P: {
@@ -661,10 +661,10 @@ const styles = {
     description: "Quieres profundamente a tus hijos y se nota. Tu prioridad es que estén bien y felices. Eso es hermoso. Pero los niños también necesitan límites para sentirse seguros y aprender a convivir con el mundo. Sin fronteras claras, pueden crecer con poca tolerancia a la frustración o dificultades para respetar reglas.",
     strength: "La calidez y el amor que le das a tus hijos es un regalo enorme. Esa base afectiva es fundamental.",
     recos: [
-      "Los límites son un acto de amor, no de castigo. Tu hijo los necesita para crecer seguro.",
-      "Practica decir 'no' con calma y sin culpa — puedes ser amoroso/a y firme al mismo tiempo.",
-      "Cuando cedes ante una rabieta, le enseñas que ese es el camino. Mantente firme aunque llore.",
-      "Involucra a tu hijo en crear las reglas — así las acepta mejor y tú te sientes menos como el 'malo'."
+      "Un adolescente sin límites no se siente libre — se siente solo. Los límites son una forma de decirles 'me importas'.",
+      "Practica sostener un 'no' con calma aunque haya enojo — ceder ante la presión les enseña que así funciona el mundo.",
+      "Hay diferencia entre ser su confidente y ser su amigo/a. Pueden contarte todo Y tú seguir siendo el adulto a cargo.",
+      "Los adolescentes necesitan figuras de autoridad que también sean cálidas — tú puedes ser las dos cosas."
     ]
   },
   N: {
@@ -678,10 +678,10 @@ const styles = {
     description: "Los resultados sugieren que en este momento hay poca conexión o presencia en tu rol como papá o mamá. Esto puede deberse a muchas razones: trabajo, estrés, tu propia historia, o simplemente no saber cómo acercarte. Lo importante es que estás aquí, haciendo este test — eso ya es un primer paso.",
     strength: "El hecho de que estés en este taller y hayas hecho este test habla de que quieres cambiar. Eso es lo más importante.",
     recos: [
-      "Empieza con algo pequeño: 10 minutos al día de atención completa a tu hijo, sin teléfono.",
-      "No tienes que tener todo resuelto — a veces basta con decir 'estoy aquí' o 'cuéntame'.",
-      "Si hay algo que te impide estar presente (estrés, trabajo, conflictos), busca apoyo — para ti también.",
-      "Retomar la conexión lleva tiempo, pero tus hijos siempre están dispuestos cuando ven el esfuerzo."
+      "Empieza con algo pequeño: pregúntale cómo estuvo su día y escucha de verdad, sin el celular en la mano.",
+      "Los adolescentes que sienten que sus padres no están presentes buscan esa figura en otros lugares — tú puedes ser esa persona.",
+      "Si el trabajo o el estrés te tienen alejado/a, busca apoyo — para ti también hay recursos.",
+      "Nunca es tarde para reconectar. Un 'quiero estar más presente contigo' puede abrir una puerta que creías cerrada."
     ]
   }
 };
@@ -739,6 +739,10 @@ function renderQuestion() {
 function selectAnswer(idx) {
   answers[currentQ] = idx;
   renderQuestion();
+  // Avance automático con pequeño delay para que se vea la selección
+  setTimeout(() => {
+    nextQ();
+  }, 400);
 }
 
 function nextQ() {
