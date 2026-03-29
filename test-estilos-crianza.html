@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test: ¿Cómo críos? — Estilos de Crianza</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FDF6EC;
+    --card: #FFFAF3;
+    --text: #2A1F14;
+    --muted: #8A7060;
+    --accent: #D4621A;
+    --accent-light: #F5E6D8;
+    --green: #3A7D52;
+    --green-light: #D6EDE2;
+    --blue: #2A5F8F;
+    --blue-light: #D6E8F5;
+    --purple: #6B3FA0;
+    --purple-light: #EAE0F5;
+    --yellow: #C49A1A;
+    --yellow-light: #FAF0D0;
+    --border: #E8D8C4;
+    --shadow: rgba(42,31,20,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--text);
+    color: var(--bg);
+    padding: 28px 24px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.18;
+  }
+  .header-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(26px, 6vw, 38px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .header p {
+    font-size: 14px;
+    color: #C4B8A8;
+    max-width: 360px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  /* PROGRESS */
+  .progress-wrap {
+    background: var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+  }
+  .progress-bar-outer {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .progress-bar-inner {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 99px;
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* MAIN */
+  main {
+    max-width: 580px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* SCREENS */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* INTRO */
+  .intro-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 24px;
+    margin-top: 28px;
+    text-align: center;
+  }
+  .intro-emoji {
+    font-size: 52px;
+    margin-bottom: 16px;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .intro-card h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .intro-card p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .intro-list {
+    list-style: none;
+    text-align: left;
+    margin: 18px 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .intro-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .intro-list li span:first-child {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* QUESTION */
+  .question-section {
+    padding-top: 28px;
+  }
+  .question-number {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .question-text {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(17px, 4vw, 21px);
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 22px;
+    color: var(--text);
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .option-btn {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.45;
+    transition: all 0.2s;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+  .option-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+    transform: translateX(3px);
+  }
+  .option-btn.selected {
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+  .option-letter {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .option-btn.selected .option-letter,
+  .option-btn:hover .option-letter {
+    background: var(--accent);
+    color: white;
+  }
+  .nav-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  /* BUTTONS */
+  .btn {
+    border: none;
+    border-radius: 12px;
+    padding: 14px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    flex: 1;
+    justify-content: center;
+  }
+  .btn-primary:hover { background: #B85514; transform: translateY(-1px); }
+  .btn-primary:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; transform: none; }
+  .btn-secondary {
+    background: var(--card);
+    color: var(--text);
+    border: 2px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--text); }
+  .btn-large {
+    padding: 16px 32px;
+    font-size: 16px;
+    width: 100%;
+    justify-content: center;
+    border-radius: 14px;
+  }
+
+  /* RESULTS */
+  .results-section {
+    padding-top: 24px;
+  }
+  .result-hero {
+    border-radius: 20px;
+    padding: 28px 24px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .result-hero::after {
+    content: attr(data-emoji);
+    position: absolute;
+    right: 16px; top: 16px;
+    font-size: 56px;
+    opacity: 0.18;
+  }
+  .result-tag {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+    opacity: 0.75;
+  }
+  .result-title {
+    font-family: 'Fraunces', serif;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .result-subtitle {
+    font-size: 13px;
+    line-height: 1.6;
+    opacity: 0.85;
+    max-width: 340px;
+  }
+
+  .result-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 20px;
+    margin-bottom: 14px;
+  }
+  .result-card h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .result-card p {
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .reco-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .reco-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.55;
+    align-items: flex-start;
+  }
+  .reco-list li span:first-child { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+
+  .score-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .score-label { font-size: 12px; font-weight: 600; width: 110px; flex-shrink: 0; }
+  .score-track {
+    flex: 1;
+    height: 8px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .score-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 1s ease;
+  }
+  .score-pct { font-size: 12px; font-weight: 600; color: var(--muted); width: 32px; text-align: right; }
+
+  .styles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .style-mini {
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 20px 0;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    animation: fadeSlide 0.4s ease forwards;
+  }
+  @keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .confetti-line {
+    text-align: center;
+    font-size: 24px;
+    margin: 12px 0;
+    letter-spacing: 4px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">Taller de Papá Informado</div>
+  <h1>¿Cómo crías<br>a tus hijos?</h1>
+  <p>Un test para conocer tu estilo de crianza y cómo mejorar tu relación con tus hijos</p>
+</div>
+
+<div class="progress-wrap" id="progressWrap" style="display:none">
+  <div class="progress-bar-outer">
+    <div class="progress-bar-inner" id="progressBar" style="width:0%"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">1 / 15</div>
+</div>
+
+<main>
+
+  <!-- PANTALLA INTRO -->
+  <div class="screen active" id="screen-intro">
+    <div class="intro-card fade-in">
+      <span class="intro-emoji">👨‍👧‍👦</span>
+      <h2>Antes de empezar</h2>
+      <p>Responde con honestidad. No hay respuestas correctas o incorrectas — esto es para ayudarte a conocerte mejor como papá o mamá.</p>
+      <ul class="intro-list">
+        <li><span>📝</span><span>15 preguntas sobre situaciones del día a día con tus hijos</span></li>
+        <li><span>⏱️</span><span>Toma alrededor de 5 minutos</span></li>
+        <li><span>🔒</span><span>Tus respuestas son privadas, nadie más las ve</span></li>
+        <li><span>🎯</span><span>Al final sabrás cuál es tu estilo de crianza y recibirás recomendaciones</span></li>
+      </ul>
+      <button class="btn btn-primary btn-large" onclick="startTest()">
+        Comenzar el test →
+      </button>
+    </div>
+  </div>
+
+  <!-- PANTALLA PREGUNTAS -->
+  <div class="screen" id="screen-questions">
+    <div class="question-section fade-in" id="questionContainer">
+    </div>
+  </div>
+
+  <!-- PANTALLA RESULTADOS -->
+  <div class="screen" id="screen-results">
+    <div class="results-section fade-in" id="resultsContainer">
+    </div>
+  </div>
+
+</main>
+
+<script>
+// =====================
+// PREGUNTAS
+// =====================
+const questions = [
+  {
+    text: "Tu hijo(a) llega llorando porque se peleó con su amigo. ¿Qué haces?",
+    options: [
+      { text: "Le digo que deje de llorar, eso no es para tanto", style: "A" },
+      { text: "Lo escucho, le pregunto qué pasó y lo ayudo a pensar cómo resolver", style: "D" },
+      { text: "Lo abrazo y le digo que haga lo que él/ella quiera", style: "P" },
+      { text: "Estoy ocupado/a, le digo que ya se le pasará", style: "N" }
+    ]
+  },
+  {
+    text: "Son las 9 de la noche y tu hijo no quiere irse a dormir. ¿Cómo reaccionas?",
+    options: [
+      { text: "Le digo que no hay discusión: a la cama ya", style: "A" },
+      { text: "Le explico por qué es importante dormir y acordamos un horario juntos", style: "D" },
+      { text: "Le dejo quedarse despierto si quiere, total ya dormirá cuando tenga sueño", style: "P" },
+      { text: "Ni me fijo mucho, que haga lo que quiera", style: "N" }
+    ]
+  },
+  {
+    text: "Tu hijo saca malas calificaciones. ¿Qué haces primero?",
+    options: [
+      { text: "Lo regaño o castigo para que entienda que eso no está bien", style: "A" },
+      { text: "Le pregunto cómo se siente y qué cree que pasó, luego buscamos soluciones", style: "D" },
+      { text: "Le digo que no se preocupe, que las calificaciones no lo son todo", style: "P" },
+      { text: "No me entero hasta que ya pasó mucho tiempo", style: "N" }
+    ]
+  },
+  {
+    text: "¿Con qué frase te identificas más cuando pones reglas en casa?",
+    options: [
+      { text: "\"Porque yo lo digo, y punto\"", style: "A" },
+      { text: "\"Vamos a acordar reglas que sean justas para todos\"", style: "D" },
+      { text: "\"No me gusta pelearme con ellos, así que tampoco impongo tanto\"", style: "P" },
+      { text: "\"Casi no hay reglas establecidas en mi casa\"", style: "N" }
+    ]
+  },
+  {
+    text: "Tu hijo quiere hacer algo que no te parece buena idea. ¿Qué haces?",
+    options: [
+      { text: "Le digo que no y no hay más que hablar", style: "A" },
+      { text: "Hablo con él/ella, le explico mis preocupaciones y escucho su punto de vista", style: "D" },
+      { text: "Al final termino dejándolo hacer lo que quiere para no discutir", style: "P" },
+      { text: "Normalmente no me entero de lo que quiere hacer", style: "N" }
+    ]
+  },
+  {
+    text: "¿Cuánto tiempo al día convives de verdad con tus hijos (platicar, jugar, ayudar con tareas)?",
+    options: [
+      { text: "Poco, pero cuando estamos juntos yo marco las reglas", style: "A" },
+      { text: "Intento que sea tiempo de calidad, conectar con ellos", style: "D" },
+      { text: "Bastante, no me separo de ellos y hago lo que me piden", style: "P" },
+      { text: "Muy poco, casi no coincidimos o estoy muy ocupado/a", style: "N" }
+    ]
+  },
+  {
+    text: "Tu hijo comete un error o hace algo malo. ¿Cómo lo corriges?",
+    options: [
+      { text: "Con un castigo inmediato para que aprenda", style: "A" },
+      { text: "Hablo con él/ella, le explico qué estuvo mal y qué consecuencias tiene", style: "D" },
+      { text: "Le llamo la atención pero al rato ya se me pasó y no hay consecuencias", style: "P" },
+      { text: "Muchas veces ni me entero o no hago nada al respecto", style: "N" }
+    ]
+  },
+  {
+    text: "¿Cómo manejas las emociones de tus hijos (tristeza, enojo, miedo)?",
+    options: [
+      { text: "Les digo que controlen sus emociones, que no sean exagerados", style: "A" },
+      { text: "Les enseño a nombrar cómo se sienten y los acompaño en eso", style: "D" },
+      { text: "Trato de que estén siempre felices y evito que se frustren", style: "P" },
+      { text: "No suelo hablar mucho de eso en casa", style: "N" }
+    ]
+  },
+  {
+    text: "Cuando tu hijo logra algo (un gol, buenas notas, aprender algo nuevo), ¿cómo reaccionas?",
+    options: [
+      { text: "Lo reconozco brevemente pero no exagero", style: "A" },
+      { text: "Lo celebro con él/ella y le digo que estoy orgulloso/a", style: "D" },
+      { text: "Lo celebro muchísimo, casi siempre exagero para que se sienta bien", style: "P" },
+      { text: "Generalmente no me entero o no digo nada al respecto", style: "N" }
+    ]
+  },
+  {
+    text: "¿Cómo toman decisiones en tu casa? (vacaciones, reglas, actividades)",
+    options: [
+      { text: "Yo decido, así es más sencillo y no hay desorden", style: "A" },
+      { text: "Tomo en cuenta la opinión de los niños según su edad", style: "D" },
+      { text: "Los niños casi siempre deciden, quiero que se sientan libres", style: "P" },
+      { text: "No hay mucha organización, cada quien hace lo suyo", style: "N" }
+    ]
+  },
+  {
+    text: "Tu hijo te dice que no quiere ir a la escuela porque se siente mal emocionalmente. ¿Qué haces?",
+    options: [
+      { text: "Le digo que tiene que ir de todas formas, que así es la vida", style: "A" },
+      { text: "Me siento con él/ella, escucho qué pasa y tomamos una decisión juntos", style: "D" },
+      { text: "Lo dejo quedarse en casa para que no sufra", style: "P" },
+      { text: "No pregunto mucho, si no quiere ir, ya verá", style: "N" }
+    ]
+  },
+  {
+    text: "¿Qué tan seguido le dices a tu hijo/a que lo/la quieres, lo/la abrazas o muestras afecto?",
+    options: [
+      { text: "Poco, no soy muy expresivo/a pero me preocupo por ellos", style: "A" },
+      { text: "Seguido, intento que sepan que los quiero y que estoy ahí", style: "D" },
+      { text: "Muchísimo, casi todo el tiempo les demuestro mi amor", style: "P" },
+      { text: "Rara vez, no es algo que haga con frecuencia", style: "N" }
+    ]
+  },
+  {
+    text: "Tu hijo adolescente quiere salir con amigos un viernes por la noche. ¿Qué haces?",
+    options: [
+      { text: "Le digo que no o le pongo condiciones muy estrictas", style: "A" },
+      { text: "Hablamos: le pregunto con quién va, a qué hora regresa y llegamos a un acuerdo", style: "D" },
+      { text: "Le digo que sí sin muchos límites, que disfrute su vida", style: "P" },
+      { text: "No me involucro mucho en sus planes", style: "N" }
+    ]
+  },
+  {
+    text: "¿Cómo describes tu relación con tus hijos en este momento?",
+    options: [
+      { text: "Me respetan pero a veces siento que me tienen miedo o distancia", style: "A" },
+      { text: "Hay confianza, me cuentan sus cosas y también me hacen caso", style: "D" },
+      { text: "Somos muy cercanos pero a veces no me hacen caso", style: "P" },
+      { text: "Hay distancia, no platicamos mucho o me siento desconectado/a", style: "N" }
+    ]
+  },
+  {
+    text: "Cuando tu hijo te pide explicaciones de por qué tiene que hacer algo, ¿cómo respondes?",
+    options: [
+      { text: "\"Porque soy tu papá/mamá y lo digo yo\"", style: "A" },
+      { text: "Le explico la razón de manera que pueda entender", style: "D" },
+      { text: "Muchas veces termino cediendo si insiste bastante", style: "P" },
+      { text: "Generalmente no hay mucha comunicación al respecto", style: "N" }
+    ]
+  }
+];
+
+// =====================
+// ESTILOS
+// =====================
+const styles = {
+  D: {
+    name: "Crianza Democrática",
+    emoji: "🌟",
+    tag: "Tu estilo principal",
+    color: "#3A7D52",
+    colorLight: "#D6EDE2",
+    textColor: "white",
+    tagline: "Firme y amoroso/a a la vez",
+    description: "Tienes un estilo que combina dos cosas importantes: poner límites claros Y estar presente emocionalmente. Escuchas a tus hijos, les explicas las cosas, y aun así no pierdes tu rol como guía. Este es uno de los estilos más saludables para el desarrollo de los niños.",
+    strength: "Tus hijos se sienten seguros y escuchados, y al mismo tiempo aprenden a respetar límites.",
+    recos: [
+      "Sigue siendo constante con los acuerdos que hacen en familia — eso les da seguridad.",
+      "Recuerda que no tienes que ser perfecto/a. Lo que más vale es que estás intentando.",
+      "Cuando te equivoques, muéstrale a tus hijos cómo pedir disculpas — eso enseña más que cualquier regla.",
+      "Busca momentos de conexión sin agenda: jugar, reír, platicar sin prisa."
+    ]
+  },
+  A: {
+    name: "Crianza Autoritaria",
+    emoji: "🦁",
+    tag: "Tu estilo principal",
+    color: "#2A5F8F",
+    colorLight: "#D6E8F5",
+    textColor: "white",
+    tagline: "Control fuerte, poco espacio emocional",
+    description: "Valoras el orden, la disciplina y que tus hijos te respeten. Eso tiene mucho valor. Sin embargo, a veces el control puede generar distancia o hacer que tus hijos no se sientan en confianza de contarte sus cosas. La buena noticia es que con pequeños ajustes puedes mantener tu autoridad Y ganar más conexión.",
+    strength: "Tus hijos saben que hay reglas claras y que hay un adulto a cargo. Eso les da estructura.",
+    recos: [
+      "Intenta explicar el 'por qué' de tus reglas — los niños obedecen mejor cuando entienden la razón.",
+      "Busca un momento al día para preguntar cómo se sintieron, sin corregir ni juzgar.",
+      "El afecto físico (abrazos, palmadas en la espalda) no te quita autoridad — te acerca a ellos.",
+      "Cuando castigues, asegúrate de que tu hijo entienda qué hizo mal, no solo que se sienta castigado."
+    ]
+  },
+  P: {
+    name: "Crianza Permisiva",
+    emoji: "🌈",
+    tag: "Tu estilo principal",
+    color: "#C49A1A",
+    colorLight: "#FAF0D0",
+    textColor: "#2A1F14",
+    tagline: "Mucho amor, pocos límites",
+    description: "Quieres profundamente a tus hijos y se nota. Tu prioridad es que estén bien y felices. Eso es hermoso. Pero los niños también necesitan límites para sentirse seguros y aprender a convivir con el mundo. Sin fronteras claras, pueden crecer con poca tolerancia a la frustración o dificultades para respetar reglas.",
+    strength: "La calidez y el amor que le das a tus hijos es un regalo enorme. Esa base afectiva es fundamental.",
+    recos: [
+      "Los límites son un acto de amor, no de castigo. Tu hijo los necesita para crecer seguro.",
+      "Practica decir 'no' con calma y sin culpa — puedes ser amoroso/a y firme al mismo tiempo.",
+      "Cuando cedes ante una rabieta, le enseñas que ese es el camino. Mantente firme aunque llore.",
+      "Involucra a tu hijo en crear las reglas — así las acepta mejor y tú te sientes menos como el 'malo'."
+    ]
+  },
+  N: {
+    name: "Crianza Negligente",
+    emoji: "🌱",
+    tag: "Área de oportunidad",
+    color: "#6B3FA0",
+    colorLight: "#EAE0F5",
+    textColor: "white",
+    tagline: "Hay distancia que vale la pena cerrar",
+    description: "Los resultados sugieren que en este momento hay poca conexión o presencia en tu rol como papá o mamá. Esto puede deberse a muchas razones: trabajo, estrés, tu propia historia, o simplemente no saber cómo acercarte. Lo importante es que estás aquí, haciendo este test — eso ya es un primer paso.",
+    strength: "El hecho de que estés en este taller y hayas hecho este test habla de que quieres cambiar. Eso es lo más importante.",
+    recos: [
+      "Empieza con algo pequeño: 10 minutos al día de atención completa a tu hijo, sin teléfono.",
+      "No tienes que tener todo resuelto — a veces basta con decir 'estoy aquí' o 'cuéntame'.",
+      "Si hay algo que te impide estar presente (estrés, trabajo, conflictos), busca apoyo — para ti también.",
+      "Retomar la conexión lleva tiempo, pero tus hijos siempre están dispuestos cuando ven el esfuerzo."
+    ]
+  }
+};
+
+// =====================
+// LÓGICA
+// =====================
+let currentQ = 0;
+let answers = [];
+let scores = { A: 0, D: 0, P: 0, N: 0 };
+
+function startTest() {
+  document.getElementById('screen-intro').classList.remove('active');
+  document.getElementById('screen-questions').classList.add('active');
+  document.getElementById('progressWrap').style.display = 'flex';
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  const total = questions.length;
+  const pct = ((currentQ) / total) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${currentQ + 1} / ${total}`;
+
+  const letters = ['A', 'B', 'C', 'D'];
+  const selected = answers[currentQ];
+
+  const html = `
+    <div class="question-number">Pregunta ${currentQ + 1} de ${total}</div>
+    <div class="question-text">${q.text}</div>
+    <div class="options">
+      ${q.options.map((opt, i) => `
+        <button class="option-btn ${selected === i ? 'selected' : ''}" onclick="selectAnswer(${i})">
+          <span class="option-letter">${letters[i]}</span>
+          <span>${opt.text}</span>
+        </button>
+      `).join('')}
+    </div>
+    <div class="nav-row">
+      ${currentQ > 0 ? `<button class="btn btn-secondary" onclick="prevQ()">← Atrás</button>` : ''}
+      <button class="btn btn-primary" id="nextBtn" onclick="nextQ()" ${selected === undefined ? 'disabled' : ''}>
+        ${currentQ === total - 1 ? 'Ver mis resultados 🎯' : 'Siguiente →'}
+      </button>
+    </div>
+  `;
+
+  const container = document.getElementById('questionContainer');
+  container.innerHTML = html;
+  container.classList.remove('fade-in');
+  void container.offsetWidth;
+  container.classList.add('fade-in');
+}
+
+function selectAnswer(idx) {
+  answers[currentQ] = idx;
+  renderQuestion();
+}
+
+function nextQ() {
+  if (answers[currentQ] === undefined) return;
+  if (currentQ < questions.length - 1) {
+    currentQ++;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    calcResults();
+  }
+}
+
+function prevQ() {
+  if (currentQ > 0) {
+    currentQ--;
+    renderQuestion();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+function calcResults() {
+  scores = { A: 0, D: 0, P: 0, N: 0 };
+  answers.forEach((ansIdx, qIdx) => {
+    const style = questions[qIdx].options[ansIdx].style;
+    scores[style]++;
+  });
+
+  const total = questions.length;
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const mainStyle = sorted[0][0];
+  const style = styles[mainStyle];
+
+  const pcts = {
+    D: Math.round((scores.D / total) * 100),
+    A: Math.round((scores.A / total) * 100),
+    P: Math.round((scores.P / total) * 100),
+    N: Math.round((scores.N / total) * 100),
+  };
+
+  const styleNames = { D: "Democrático", A: "Autoritario", P: "Permisivo", N: "Negligente" };
+  const styleColors = { D: "#3A7D52", A: "#2A5F8F", P: "#C49A1A", N: "#6B3FA0" };
+
+  const resultsHtml = `
+    <div class="confetti-line">🎉 ✨ 🎊</div>
+
+    <div class="result-hero" data-emoji="${style.emoji}" style="background:${style.color}; color:${style.textColor};">
+      <div class="result-tag">${style.tag}</div>
+      <div class="result-title">${style.name}</div>
+      <div class="result-subtitle">${style.tagline}</div>
+    </div>
+
+    <div class="result-card">
+      <h3>📖 ¿Qué significa esto?</h3>
+      <p>${style.description}</p>
+      <div class="divider"></div>
+      <p><strong>Tu fortaleza:</strong> ${style.strength}</p>
+    </div>
+
+    <div class="result-card">
+      <h3>📊 Tus resultados completos</h3>
+      <div class="score-row">
+        ${Object.entries(pcts).map(([key, pct]) => `
+          <div class="score-item">
+            <div class="score-label" style="font-size:12px;color:${styleColors[key]}">${styleNames[key]}</div>
+            <div class="score-track">
+              <div class="score-fill" style="width:${pct}%; background:${styleColors[key]};"></div>
+            </div>
+            <div class="score-pct">${pct}%</div>
+          </div>
+        `).join('')}
+      </div>
+      <p style="font-size:12px; color:var(--muted)">La mayoría de los padres tienen una mezcla de estilos — lo que importa es cuál predomina.</p>
+    </div>
+
+    <div class="result-card">
+      <h3>💡 Recomendaciones para ti</h3>
+      <ul class="reco-list">
+        ${style.recos.map(r => `<li><span>✅</span><span>${r}</span></li>`).join('')}
+      </ul>
+    </div>
+
+    <div class="result-card" style="background: var(--accent-light); border-color: var(--accent);">
+      <h3>🌱 Recuerda</h3>
+      <p>La crianza no es perfecta — es un proceso. El solo hecho de reflexionar sobre cómo eres con tus hijos ya es un acto de amor enorme. Sigue adelante.</p>
+    </div>
+
+    <button class="btn btn-secondary btn-large" onclick="resetTest()" style="margin-top:8px">
+      🔄 Hacer el test de nuevo
+    </button>
+  `;
+
+  // Enviar a Google Sheets
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycbzclZCuIhd5GSrq-zIYOu0WPw_YGO4JTcOe_H2jEVvAaNaJZx2FBIgM_0RW1Q5W2eHO/exec";
+  fetch(SHEET_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      estiloPrincipal: style.name,
+      pctDemocratico: pcts.D,
+      pctAutoritario: pcts.A,
+      pctPermisivo: pcts.P,
+      pctNegligente: pcts.N
+    })
+  }).catch(() => {}); // silencioso si falla
+
+  document.getElementById('screen-questions').classList.remove('active');
+  document.getElementById('screen-results').classList.add('active');
+  document.getElementById('progressBar').style.width = '100%';
+  document.getElementById('progressLabel').textContent = '✓ Completo';
+
+  const container = document.getElementById('resultsContainer');
+  container.innerHTML = resultsHtml;
+  container.classList.remove('fade-in');
+  void container.offsetWidth;
+  container.classList.add('fade-in');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Animate bars after render
+  setTimeout(() => {
+    document.querySelectorAll('.score-fill').forEach(el => {
+      const w = el.style.width;
+      el.style.width = '0';
+      setTimeout(() => { el.style.width = w; }, 50);
+    });
+  }, 100);
+}
+
+function resetTest() {
+  currentQ = 0;
+  answers = [];
+  scores = { A: 0, D: 0, P: 0, N: 0 };
+  document.getElementById('screen-results').classList.remove('active');
+  document.getElementById('screen-intro').classList.add('active');
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('progressBar').style.width = '0%';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
