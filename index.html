@@ -810,20 +810,21 @@ function calcResults() {
     const allSecondary = Object.entries(pcts)
       .filter(([key]) => key !== mainStyle)
       .sort((a, b) => b[1] - a[1]);
+    const dMessage = dPct === 0
+      ? `El estilo Democrático es una habilidad que se aprende. El hecho de estar en este taller ya te pone en camino.`
+      : `Ese <strong>Democrático (${dPct}%)</strong> ya está ahí — y eso es un buen inicio para seguir creciendo.`;
     warningHtml = `
       <div class="result-card" style="border-color: #3A7D52; background: #F0FAF4;">
         <h3 style="color:#3A7D52;">🌱 Un punto de partida</h3>
         <p style="color:#2A5A3A;">
           Tus resultados muestran: ${allSecondary.map(([key, pct]) => `<strong>${styleNames[key]} (${pct}%)</strong>`).join(', ')}.
-          Ese <strong>Democrático (${dPct}%)</strong> ya está ahí — y eso es un buen inicio para seguir creciendo.
+          ${dMessage}
         </p>
       </div>
     `;
   }
 
   const resultsHtml = `
-    <div class="confetti-line">🎉 ✨ 🎊</div>
-
     <div class="result-hero" data-emoji="${style.emoji}" style="background:${style.color}; color:${style.textColor};">
       <div class="result-tag">${style.tag}</div>
       <div class="result-title">${style.name}</div>
@@ -867,6 +868,12 @@ function calcResults() {
       <p>La crianza no es perfecta — es un proceso. El solo hecho de reflexionar sobre cómo eres con tus hijos ya es un acto de amor enorme. Sigue adelante.</p>
     </div>
 
+    <button class="btn btn-secondary btn-large" onclick="copyResults()" style="margin-top:8px">
+      📋 Copiar resultados
+    </button>
+    <p id="copyInstruction" style="font-size:12px; color:var(--muted); text-align:center; margin-top:10px; line-height:1.6; display:none;">
+      ✅ ¡Listo! Ahora abre tu app de notas, Word o bloc de notas, pega el texto y guárdalo. Así tendrás tus resultados a la mano para ir midiendo tus avances.
+    </p>
     <button class="btn btn-secondary btn-large" onclick="resetTest()" style="margin-top:8px">
       🔄 Hacer el test de nuevo
     </button>
@@ -907,6 +914,78 @@ function calcResults() {
       setTimeout(() => { el.style.width = w; }, 50);
     });
   }, 100);
+}
+
+function copyResults() {
+  const styleNamesMap = { D: "Democrático", A: "Autoritario", P: "Permisivo", N: "Negligente" };
+  const total = questions.length;
+  const pcts = {
+    D: Math.round((scores.D / total) * 100),
+    A: Math.round((scores.A / total) * 100),
+    P: Math.round((scores.P / total) * 100),
+    N: Math.round((scores.N / total) * 100),
+  };
+  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const mainStyle = sorted[0][0];
+  const style = styles[mainStyle];
+
+  // Estilos secundarios ordenados
+  const secondaryList = Object.entries(pcts)
+    .filter(([key]) => key !== mainStyle && pcts[key] > 0)
+    .sort((a, b) => b[1] - a[1])
+    .map(([key, pct]) => `• ${styleNamesMap[key]}: ${pct}%`)
+    .join('\n');
+
+  // Advertencia
+  let advertencia = '';
+  if (mainStyle === 'D' && pcts['D'] < 80) {
+    const secondary = Object.entries(pcts)
+      .filter(([key]) => key !== 'D' && pcts[key] > 0)
+      .sort((a, b) => b[1] - a[1])
+      .map(([key, pct]) => `${styleNamesMap[key]} (${pct}%)`)
+      .join(', ');
+    advertencia = `\n⚠️ ALGO QUE TENER EN CUENTA\nTu tendencia ${secondary} puede estar generando resistencia en tu adolescente sin que lo notes.\n`;
+  } else if (mainStyle !== 'D') {
+    const dPct = pcts['D'];
+    advertencia = dPct === 0
+      ? `\n🌱 UN PUNTO DE PARTIDA\nEl estilo Democrático es una habilidad que se aprende. El hecho de estar en este taller ya te pone en camino.\n`
+      : `\n🌱 UN PUNTO DE PARTIDA\nEse Democrático (${dPct}%) ya está ahí — y eso es un buen inicio para seguir creciendo.\n`;
+  }
+
+  // Recomendaciones
+  const recosList = style.recos.map((r, i) => `${i + 1}. ${r}`).join('\n');
+
+  const text = `PAPÁ INFORMADO · Test de Estilos de Crianza
+────────────────────────────────────────
+ESTILO PRINCIPAL: ${style.name.toUpperCase()}
+${style.tagline}
+
+${style.description}
+────────────────────────────────────────
+RESULTADOS
+• Democrático: ${pcts.D}%
+• Autoritario: ${pcts.A}%
+• Permisivo: ${pcts.P}%
+• Negligente: ${pcts.N}%
+────────────────────────────────────────
+TU FORTALEZA
+${style.strength}
+${advertencia}
+────────────────────────────────────────
+RECOMENDACIONES
+${recosList}
+────────────────────────────────────────
+Esta evaluación es una herramienta de reflexión personal,
+no un diagnóstico clínico.`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('[onclick="copyResults()"]');
+    btn.textContent = '✅ ¡Copiado!';
+    document.getElementById('copyInstruction').style.display = 'block';
+    setTimeout(() => { btn.innerHTML = '📋 Copiar resultados'; }, 2000);
+  }).catch(() => {
+    alert('No se pudo copiar automáticamente. Por favor toma una captura de pantalla.');
+  });
 }
 
 function resetTest() {
