@@ -446,7 +446,7 @@
       <p>Responde con honestidad. No hay respuestas correctas o incorrectas — esto es para ayudarte a conocerte mejor como papá o mamá.</p>
       <ul class="intro-list">
         <li><span>📝</span><span>15 preguntas sobre situaciones del día a día con tus hijos</span></li>
-        <li><span>⏱️</span><span>Toma alrededor de 5 minutos</span></li>
+        <li><span>⏱️</span><span>Toma alrededor de 10 minutos</span></li>
         <li><span>🔒</span><span>Tus respuestas son privadas, nadie más las ve</span></li>
         <li><span>🎯</span><span>Al final sabrás cuál es tu estilo de crianza y recibirás recomendaciones</span></li>
       </ul>
@@ -786,8 +786,41 @@ function calcResults() {
   const styleNames = { D: "Democrático", A: "Autoritario", P: "Permisivo", N: "Negligente" };
   const styleColors = { D: "#3A7D52", A: "#2A5F8F", P: "#C49A1A", N: "#6B3FA0" };
 
+  // Generar advertencia según estilo principal
+  const secondaryStyles = Object.entries(pcts)
+    .filter(([key, pct]) => key !== mainStyle && pct > 0)
+    .sort((a, b) => b[1] - a[1]);
+
+  let warningHtml = '';
+
+  if (mainStyle === 'D' && pcts['D'] < 80) {
+    warningHtml = `
+      <div class="result-card" style="border-color: #E8A020; background: #FFF8EC;">
+        <h3 style="color:#B87010;">⚠️ Algo que tener en cuenta</h3>
+        <p style="color:#7A5010;">
+          Eres principalmente <strong>Democrático (${pcts.D}%)</strong>, pero tu tendencia
+          ${secondaryStyles.map(([key, pct]) => `<strong>${styleNames[key]} (${pct}%)</strong>`).join(', ')}
+          puede estar generando resistencia en tu adolescente sin que lo notes.
+          Vale la pena observar en qué momentos aparecen esas otras tendencias.
+        </p>
+      </div>
+    `;
+  } else if (mainStyle !== 'D') {
+    const dPct = pcts['D'];
+    warningHtml = `
+      <div class="result-card" style="border-color: #3A7D52; background: #F0FAF4;">
+        <h3 style="color:#3A7D52;">🌱 Un punto de partida</h3>
+        <p style="color:#2A5A3A;">
+          Tus resultados muestran: ${secondaryStyles.concat([['D', dPct]]).sort((a,b) => b[1]-a[1]).map(([key, pct]) => `<strong>${styleNames[key]} (${pct}%)</strong>`).join(', ')}.
+          Ese <strong>Democrático (${dPct}%)</strong> ya está ahí — y eso es un buen inicio para seguir creciendo.
+        </p>
+      </div>
+    `;
+  }
+
   const resultsHtml = `
-    
+    <div class="confetti-line">🎉 ✨ 🎊</div>
+
     <div class="result-hero" data-emoji="${style.emoji}" style="background:${style.color}; color:${style.textColor};">
       <div class="result-tag">${style.tag}</div>
       <div class="result-title">${style.name}</div>
@@ -800,6 +833,8 @@ function calcResults() {
       <div class="divider"></div>
       <p><strong>Tu fortaleza:</strong> ${style.strength}</p>
     </div>
+
+    ${warningHtml}
 
     <div class="result-card">
       <h3>📊 Tus resultados completos</h3>
